@@ -9,6 +9,6 @@ bin           = @["nimnexus"]
 
 # Dependencies
 
-requires "nim >= 0.19.0", "hts >= 0.2.7", "docopt#0abba63", "nimbioseq"
+requires "nim >= 0.19.0", "hts >= 0.2.7", "docopt#0abba63" # , "nimbioseq"
 
 # nimble build --threads:on

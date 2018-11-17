@@ -2,6 +2,7 @@ import docopt
 import hts
 import strutils, sequtils
 import tables
+import strformat
 
 
 proc bam_dedup*() =
@@ -19,7 +20,7 @@ Options:
   -t --threads <int>       number of BAM decompression threads [default: 2]
 
 Example:
-  nimnexus dedup -t 10 file.bam > file.dedup.bam
+  nimnexus dedup -t 10 file.bam | samtools view -b > file.dedup.bam
     """)
   let args = docopt(doc)
 
@@ -35,10 +36,12 @@ Example:
   var
     positions = newTable[string, int](initialSize=16384)
     i = 0
+    skipped = 0
     prev_chr = ""
     prev_pos = 0
     
   for aln in bam:
+    i += 1
     if aln.chrom != prev_chr:
       # we found a new chromosome
       prev_chr = aln.chrom
@@ -55,7 +58,9 @@ Example:
     # check if we alredy have the position stored
     if aln.qname in positions:
       if aln.start == positions[aln.qname]:
+        skipped += 1
         # duplicated read. Skip it
+        # stderr.write_line "Duplicated read " & aln.chrom & " "
         continue
     prev_pos = aln.start
     positions[aln.qname] = prev_pos
@@ -63,6 +68,7 @@ Example:
     obam.write(aln)
 
   obam.close()
+  stderr.write_line &"Removed {skipped}/{i} of reads"
 
 
 when isMainModule:
