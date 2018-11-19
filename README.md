@@ -67,3 +67,11 @@ Example:
 ```
 
 Note: `nimnexus dup` writes the output in the SAM format to stdout. Hence `samtools view -b` is used to convert SAM->BAM.
+
+
+## Credit
+
+- the original script written in R was implemented by by Melanie Weilert and Jeff Johnston. Repository: [mlweilert/chipnexus-processing-scripts](https://github.com/mlweilert/chipnexus-processing-scripts/). Matching scripts:
+  - `nimnexus trim` <-> [scripts/preprocess_fastq](https://github.com/mlweilert/chipnexus-processing-scripts/blob/master/scripts/preprocess_fastq.r)
+  - `nimnexus dedup` <-> [scripts/process_bam.r](https://github.com/mlweilert/chipnexus-processing-scripts/blob/master/scripts/process_bam.r)
+- nim package template was taken from Brent Pedersen's bpbio nim package: https://github.com/brentp/bpbio
