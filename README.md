@@ -8,7 +8,7 @@
 Download the binary from releases
 `wget https://github.com/Avsecz/nimnexus/blob/master/nimnexus?raw=true -O nimnexus && chmod u+x nimnexus`
 
-Put it into a folder with findable in $PATH.
+Put it into a folder specified in $PATH.
 
 ## Commands
 ### Trim
