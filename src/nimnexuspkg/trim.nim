@@ -57,7 +57,7 @@ iterator readFastq_stdin(): Record =
 
     
 proc trim(trim_len: int, min_keep: int, randombarcode: int, barcodes: seq[string]) =
-  ## This function reads from STDIN and writes to STDIN
+  ## This function reads from STDIN and writes to STDOUT
   var s = Record(id: "", description:"", quality: "", sequence:"")
   
   let fixed_barcode_start = randombarcode
