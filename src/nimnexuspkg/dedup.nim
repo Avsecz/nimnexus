@@ -39,6 +39,7 @@ Example:
     skipped = 0
     prev_chr = ""
     prev_pos = 0
+    aln_hash = ""
     
   for aln in bam:
     i += 1
@@ -55,15 +56,18 @@ Example:
       stderr.write_line "[dedup] Bam-file not sorted. Please sort the bam file."
       quit(2)
 
+    # compute the hash of the current alignment
+    aln_hash = aln.qname & "-" & $aln.cigar & "-" & $aln.flag.cint
+
     # check if we alredy have the position stored
-    if aln.qname in positions:
-      if aln.start == positions[aln.qname]:
+    if aln_hash in positions:
+      if aln.start == positions[aln_hash]:
         skipped += 1
         # duplicated read. Skip it
         # stderr.write_line "Duplicated read " & aln.chrom & " "
         continue
     prev_pos = aln.start
-    positions[aln.qname] = prev_pos
+    positions[aln_hash] = prev_pos
 
     obam.write(aln)
 
@@ -73,5 +77,3 @@ Example:
 
 when isMainModule:
   bam_dedup()
-
-

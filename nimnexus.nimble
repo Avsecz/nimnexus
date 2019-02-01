@@ -1,5 +1,5 @@
 # Package
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "Ziga Avsec"
 description   = "Collection of command-line tools for working with ChIP-nexus data"
 license       = "MIT"
