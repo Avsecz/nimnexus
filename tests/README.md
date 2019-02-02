@@ -42,10 +42,12 @@ wget $URL/MESC_TFs/deduplicated_bam/mesc_oct4_nexus_1_id2226_filtered.bam
 Run de-duplication. Use 10 threads. Takes ca 3 min.
 
 ```
-time nimnexus dedup -t 10 mesc_oct4_nexus_1_id2226.bam | samtools view -b > mesc_oct4_nexus_1_id2226.dedup.bam
-# Removed 3725509/34612851 of reads
-# nimnexus dedup -t 10 mesc_oct4_nexus_1_id2226.bam  94.42s user 4.17s system 48% cpu 3:23.20 total
-# samtools view -b > mesc_oct4_nexus_1_id2226.dedup.bam  198.54s user 4.58s system 99% cpu 3:23.37 total
+$ time ../nimnexus dedup -t 10 data/mesc_oct4_nexus_1_id2226.bam | samtools view -b > data/mesc_oct4_nexus_1_id2226.dedup.bam
+nimnexus version:0.1.0
+
+Removed 3673272/34612851 of reads
+../nimnexus dedup -t 10 data/mesc_oct4_nexus_1_id2226.bam  238.84s user 4.73s system 109% cpu 3:41.71 total
+samtools view -b > data/mesc_oct4_nexus_1_id2226.dedup.bam  207.13s user 5.09s system 95% cpu 3:41.75 total
 ```
 
 Compare the resulting bam file
